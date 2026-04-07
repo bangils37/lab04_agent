@@ -1,14 +1,8 @@
 import logging
-from typing import Annotated
-from typing_extensions import TypedDict
-from datetime import datetime
-
 from dotenv import load_dotenv
 from langchain_core.messages import SystemMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langgraph.graph import StateGraph, START
-from langgraph.graph.message import add_messages
-from langgraph.prebuilt import ToolNode, tools_condition
+from langchain.agents import create_agent
 
 from tools import calculate_budget, search_flights, search_hotels
 
@@ -24,46 +18,29 @@ logging.basicConfig(
     ]
 )
 
+# Read system prompt
 with open("system_prompt.txt", "r", encoding="utf-8") as f:
     SYSTEM_PROMPT = f.read()
+logging.info("✅ System prompt loaded")
 
-class AgentState(TypedDict):
-    messages: Annotated[list, add_messages]
+# Initialize LLM
+llm = ChatGoogleGenerativeAI(
+    model="gemini-3.1-flash-lite-preview",
+    temperature=0
+)
+logging.info("✅ LLM initialized (Gemini 3.1 Flash Lite)")
 
+# Define tools
 tools_list = [search_flights, search_hotels, calculate_budget]
-llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite")
-llm_with_tools = llm.bind_tools(tools_list)
+logging.info(f"✅ {len(tools_list)} tools registered: {[tool.name for tool in tools_list]}")
 
-
-def agent_node(state: AgentState):
-    messages = state["messages"]
-    if not messages or not isinstance(messages[0], SystemMessage):
-        messages = [SystemMessage(content=SYSTEM_PROMPT)] + messages
-
-    response = llm_with_tools.invoke(messages)
-
-    if getattr(response, "tool_calls", None):
-        for tc in response.tool_calls:
-            tool_log = f"Gọi tool: {tc['name']}({tc['args']})"
-            print(f"[TOOL] {tool_log}")
-            logging.info(f"[TOOL] {tool_log}")
-    else:
-        print("[INFO] Trả lời trực tiếp")
-        logging.info("[INFO] Trả lời trực tiếp")
-
-    return {"messages": [response]}
-
-builder = StateGraph(AgentState)
-builder.add_node("agent", agent_node)
-
-tool_node = ToolNode(tools_list)
-builder.add_node("tools", tool_node)
-
-builder.add_edge(START, "agent")
-builder.add_conditional_edges("agent", tools_condition)
-builder.add_edge("tools", "agent")
-
-graph = builder.compile()
+# Create ReAct Agent
+graph = create_agent(
+    model=llm,
+    tools=tools_list,
+    system_prompt=SYSTEM_PROMPT
+)
+logging.info("✅ ReAct Agent created successfully")
 
 if __name__ == "__main__":
     separator = "=" * 60
@@ -84,14 +61,28 @@ if __name__ == "__main__":
             break
 
         test_count += 1
-        logging.info(f"\n--- TEST {test_count} ---")
-        logging.info(f"User: {user_input}")
+        logging.info(f"\n{'='*60}")
+        logging.info(f"TEST #{test_count}")
+        logging.info(f"{'='*60}")
+        logging.info(f"User Input: {user_input}")
         
         print("\nTravelBuddy đang suy nghĩ...")
+        logging.info("⏳ Agent processing request...")
+        
         result = graph.invoke({"messages": [("human", user_input)]})
         final = result["messages"][-1]
-        response_text = final.content
-        
+
+        if isinstance(final.content, list):
+            response_text = "\n".join(
+                block.get("text", "")
+                for block in final.content
+                if block.get("type") == "text"
+            )
+        else:
+            response_text = final.content      
+              
+        logging.info(f"✅ Agent response generated")
         print(f"\nTravelBuddy: {response_text}")
-        logging.info(f"Assistant: {response_text}\n")
+        logging.info(f"Agent Response:\n{response_text}")
+        logging.info(f"{'='*60}\n")
 
