@@ -1,6 +1,10 @@
+import logging
 from typing import Dict, List, Optional
 
 from langchain_core.tools import tool
+
+# Setup logging for tools
+logger = logging.getLogger(__name__)
 
 FLIGHTS_DB = {
     ("Hà Nội", "Đà Nẵng"): [
@@ -74,35 +78,44 @@ def format_flight(flight: Dict) -> str:
 @tool
 def search_flights(origin: str, destination: str) -> str:
     """Tìm kiếm và format các chuyến bay giữa origin và destination."""
+    logger.info(f"🔍 Searching flights from '{origin}' to '{destination}'")
     origin = origin.strip()
     destination = destination.strip()
     flights = find_flights(origin, destination)
 
     if not flights:
+        logger.warning(f"⚠️ No flights found: {origin} → {destination}")
         return f"Không tìm thấy chuyến bay từ {origin} đến {destination}."
 
     sorted_flights = sorted(flights, key=lambda x: x["price"])
+    logger.info(f"✈️ Found {len(sorted_flights)} flights")
     lines = [f"Tìm thấy {len(sorted_flights)} chuyến bay từ {origin} đến {destination}:"]
     for flight in sorted_flights:
         lines.append(format_flight(flight))
 
-    return "\n".join(lines)
+    result = "\n".join(lines)
+    logger.debug(f"📊 Flight search result prepared")
+    return result
 
 @tool
 def search_hotels(city: str, max_price_per_night: int = 99_999_999) -> str:
     """Tìm kiếm khách sạn tại city và lọc theo giá tối đa mỗi đêm."""
+    logger.info(f"🏨 Searching hotels in '{city}' (max price: {format_currency(max_price_per_night)}/night)")
     city = city.strip()
     if city not in HOTELS_DB:
+        logger.error(f"❌ No hotel data available for city: {city}")
         return f"Không tìm thấy dữ liệu khách sạn cho thành phố {city}."
 
     hotels = [hotel for hotel in HOTELS_DB[city] if hotel["price_per_night"] <= max_price_per_night]
     if not hotels:
+        logger.warning(f"⚠️ No hotels found in {city} with price ≤ {format_currency(max_price_per_night)}/night")
         return (
             f"Không tìm thấy khách sạn tại {city} với giá dưới {format_currency(max_price_per_night)}/đêm. "
             "Hãy thử tăng ngân sách."
         )
 
     hotels.sort(key=lambda item: item["rating"], reverse=True)
+    logger.info(f"🔑 Found {len(hotels)} hotels matching criteria")
     lines = [f"Khách sạn phù hợp tại {city} (tối đa {format_currency(max_price_per_night)}/đêm):"]
     for hotel in hotels:
         lines.append(
@@ -110,13 +123,17 @@ def search_hotels(city: str, max_price_per_night: int = 99_999_999) -> str:
             f"Khu vực: {hotel['area']} | Rating: {hotel['rating']}"
         )
 
-    return "\n".join(lines)
+    result = "\n".join(lines)
+    logger.debug(f"📊 Hotel search result prepared for {city}")
+    return result
 
 @tool
 def calculate_budget(total_budget: int, expenses: str) -> str:
     """Tính toán ngân sách còn lại dựa trên tổng ngân sách và chuỗi expenses."""
+    logger.info(f"💰 Calculating budget - Total: {format_currency(int(total_budget))}")
     total_budget = int(total_budget)
     if not expenses:
+        logger.warning("⚠️ No expenses provided for budget calculation")
         return "Không có khoản chi nào để tính."
 
     expense_items: Dict[str, int] = {}
@@ -134,6 +151,7 @@ def calculate_budget(total_budget: int, expenses: str) -> str:
         expense_items[key] = int(value)
 
     if invalid_entries:
+        logger.error(f"❌ Invalid expense format: {invalid_entries}")
         return (
             "Định dạng expenses không hợp lệ. "
             f"Vui lòng dùng 'tên_khoản:số_tiền' cách nhau bằng dấu phẩy. "
@@ -142,6 +160,9 @@ def calculate_budget(total_budget: int, expenses: str) -> str:
 
     total_expense = sum(expense_items.values())
     remaining = total_budget - total_expense
+    logger.info(f"📈 Expense items parsed: {len(expense_items)} items")
+    logger.info(f"Total expense: {format_currency(total_expense)} | Remaining: {format_currency(remaining)}")
+    
     lines = ["Bảng chi phí:"]
     for name, amount in expense_items.items():
         readable_name = name.replace("_", " ").capitalize()
@@ -152,7 +173,10 @@ def calculate_budget(total_budget: int, expenses: str) -> str:
     lines.append(f"Ngân sách: {format_currency(total_budget)}")
     if remaining >= 0:
         lines.append(f"Còn lại: {format_currency(remaining)}")
+        logger.info(f"✅ Budget OK - {format_currency(remaining)} remaining")
     else:
         lines.append(f"Vượt ngân sách {-remaining}đ! Cần điều chỉnh.")
+        logger.warning(f"⚠️ Budget exceeded by {format_currency(-remaining)}")
 
-    return "\n".join(lines)
+    result = "\n".join(lines)
+    return result
