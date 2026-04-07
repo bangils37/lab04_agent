@@ -1,0 +1,365 @@
+2026-04-07 16:34:12,188 - ============================================================
+2026-04-07 16:34:12,188 - === TravelBuddy Agent Started ===
+2026-04-07 16:34:12,188 - ============================================================
+2026-04-07 16:34:26,883 - 
+--- TEST 1 ---
+2026-04-07 16:34:26,883 - User: Xin chào! Tôi đang muốn đi du lịch nhưng chưa biết đi đâu.
+2026-04-07 16:34:28,886 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-04-07 16:34:28,888 - [INFO] Trả lời trực tiếp
+2026-04-07 16:34:28,889 - Assistant: Chào bạn! Mình là TravelBuddy đây, rất vui được giúp bạn lên kế hoạch cho chuyến đi sắp tới. Để mình gợi ý được điểm đến ưng ý nhất, bạn cho mình biết thêm một chút xíu nhé:
+
+*   Bạn muốn **xuất phát từ đâu**?
+*   Bạn thích kiểu du lịch nào (biển, núi, thành phố, văn hóa...)?
+*   Bạn dự định đi **bao nhiêu ngày**?
+*   Ngân sách của bạn cho chuyến đi này khoảng **bao nhiêu** nhỉ?
+
+Càng nhiều thông tin, mình càng dễ tìm ra "chân ái" cho chuyến đi của bạn đó! 😊
+
+2026-04-07 16:35:01,439 - 
+--- TEST 2 ---
+2026-04-07 16:35:01,439 - User: Tìm giúp tôi chuyến bay từ Hà Nội đi Đà Nẵng
+2026-04-07 16:35:02,834 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-04-07 16:35:02,838 - [INFO] Trả lời trực tiếp
+2026-04-07 16:35:02,839 - Assistant: Để mình tìm giúp bạn vé máy bay từ Hà Nội đi Đà Nẵng nhé! Bạn đi mấy người và muốn đi vào ngày nào, hay khoảng thời gian nào không?
+
+2026-04-07 16:37:25,862 - ============================================================
+2026-04-07 16:37:25,863 - === TravelBuddy Agent Started ===
+2026-04-07 16:37:25,863 - ============================================================
+2026-04-07 16:38:09,597 - ============================================================
+2026-04-07 16:38:09,598 - === TravelBuddy Agent Started ===
+2026-04-07 16:38:09,598 - ============================================================
+2026-04-07 16:38:17,911 - 
+--- TEST 1 ---
+2026-04-07 16:38:17,911 - User: Tìm giúp tôi chuyến bay từ Hà Nội đi Đà Nẵng
+2026-04-07 16:38:20,263 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-04-07 16:38:20,265 - [TOOL] Gọi tool: search_flights({'origin': 'Hà Nội', 'destination': 'Đà Nẵng'})
+2026-04-07 16:38:21,993 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-04-07 16:38:21,995 - [INFO] Trả lời trực tiếp
+2026-04-07 16:38:21,996 - Assistant: Chào bạn, mình tìm được mấy chuyến bay từ Hà Nội đi Đà Nẵng đây ạ:
+- VietJet Air khởi hành lúc 08:30, về đến 09:50, giá 890.000đ (hạng economy)
+- Bamboo Airways khởi hành lúc 11:00, về đến 12:20, giá 1.200.000đ (hạng economy)
+- Vietnam Airlines khởi hành lúc 06:00, về đến 07:20, giá 1.450.000đ (hạng economy)
+- Vietnam Airlines khởi hành lúc 14:00, về đến 15:20, giá 2.800.000đ (hạng business)
+
+Bạn thấy chuyến nào hợp lý?
+
+2026-04-07 16:38:32,643 - 
+--- TEST 2 ---
+2026-04-07 16:38:32,643 - User: Tôi ở Hà Nội, muốn đi Phú Quốc 2 đêm, budget 5 triệu. Tư vấn giúp!
+2026-04-07 16:38:34,611 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-04-07 16:38:34,613 - [INFO] Trả lời trực tiếp
+2026-04-07 16:38:34,614 - Assistant: Chào bạn, mình là TravelBuddy đây! Đi Phú Quốc 2 đêm với budget 5 triệu là hợp lý đó. Để mình xem giúp bạn vé máy bay và khách sạn nha.
+
+Bạn đi mấy người ạ? Và bạn muốn đi ngày nào để mình check vé và phòng cho chuẩn nhất nè?
+
+2026-04-07 16:41:24,287 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-04-07 16:41:24,290 - [REACT] No tool call needed - direct response
+2026-04-07 16:41:25,766 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-04-07 16:41:25,768 - [REACT] Action: search_flights({'origin': 'Hà Nội', 'destination': 'Đà Nẵng'})
+2026-04-07 16:41:27,959 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-04-07 16:41:27,960 - [REACT] No tool call needed - direct response
+2026-04-07 16:41:28,693 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 503 Service Unavailable"
+2026-04-07 16:41:28,694 - Retrying google.genai._api_client.BaseApiClient._request_once in 1.02 seconds as it raised ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}.
+2026-04-07 16:41:30,510 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 503 Service Unavailable"
+2026-04-07 16:41:30,510 - Retrying google.genai._api_client.BaseApiClient._request_once in 2.9 seconds as it raised ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}.
+2026-04-07 16:41:35,047 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-04-07 16:41:35,049 - [REACT] No tool call needed - direct response
+2026-04-07 16:50:39,613 - ============================================================
+2026-04-07 16:50:39,613 - === TravelBuddy Agent Started ===
+2026-04-07 16:50:39,613 - ============================================================
+2026-04-07 16:50:53,794 - 
+--- TEST 1 ---
+2026-04-07 16:50:53,794 - User: Tôi ở Hà Nội, muốn đi Phú Quốc 2 đêm, budget 5 triệu. Tư vấn giúp!
+2026-04-07 16:50:55,119 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-04-07 16:50:55,121 - Assistant: Chào bạn, đi Phú Quốc 2 đêm từ Hà Nội với budget 5 triệu là hợp lý đó! Để mình check vé máy bay và khách sạn cho bạn nha.
+
+Bạn muốn đi vào ngày nào ạ? Và bạn thích bay của hãng nào, hay giờ bay nào không?
+
+2026-04-07 16:54:11,556 - ✅ System prompt loaded
+2026-04-07 16:54:12,364 - ✅ LLM initialized (Gemini 2.5 Flash Lite)
+2026-04-07 16:54:12,365 - ✅ 3 tools registered: ['search_flights', 'search_hotels', 'calculate_budget']
+2026-04-07 16:54:12,374 - ✅ ReAct Agent created successfully
+2026-04-07 16:54:12,375 - ============================================================
+2026-04-07 16:54:12,375 - === TravelBuddy Agent Started ===
+2026-04-07 16:54:12,375 - ============================================================
+2026-04-07 16:54:15,475 - 
+============================================================
+2026-04-07 16:54:15,475 - TEST #1
+2026-04-07 16:54:15,475 - ============================================================
+2026-04-07 16:54:15,475 - User Input: Xin chào! Tôi đang muốn đi du lịch nhưng chưa biết đi đâu.
+2026-04-07 16:54:15,476 - ⏳ Agent processing request...
+2026-04-07 16:54:16,814 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-04-07 16:54:16,817 - ✅ Agent response generated
+2026-04-07 16:54:16,817 - Agent Response:
+Chào bạn! Để mình giúp bạn lên kế hoạch cho chuyến đi sắp tới nhé. Bạn thích đi biển, núi hay khám phá thành phố? Và bạn dự định đi bao nhiêu ngày, ngân sách của bạn khoảng bao nhiêu nhỉ? Cho mình biết thêm thông tin để mình tư vấn điểm đến phù hợp nha!
+2026-04-07 16:54:16,817 - ============================================================
+
+2026-04-07 16:55:08,043 - 
+============================================================
+2026-04-07 16:55:08,043 - TEST #2
+2026-04-07 16:55:08,043 - ============================================================
+2026-04-07 16:55:08,043 - User Input: Tìm giúp tôi chuyến bay từ Hà Nội đi Đà Nẵng
+2026-04-07 16:55:08,044 - ⏳ Agent processing request...
+2026-04-07 16:55:09,345 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-04-07 16:55:09,347 - ✅ Agent response generated
+2026-04-07 16:55:09,347 - Agent Response:
+Ok bạn ơi, bạn muốn đi ngày nào và về ngày nào ạ? Để mình tìm vé chính xác cho bạn nha.
+2026-04-07 16:55:09,347 - ============================================================
+
+2026-04-07 16:56:12,855 - ✅ System prompt loaded
+2026-04-07 16:56:13,342 - ✅ LLM initialized (Gemini 2.5 Flash Lite)
+2026-04-07 16:56:13,342 - ✅ 3 tools registered: ['search_flights', 'search_hotels', 'calculate_budget']
+2026-04-07 16:56:13,353 - ✅ ReAct Agent created successfully
+2026-04-07 16:56:13,355 - ============================================================
+2026-04-07 16:56:13,356 - === TravelBuddy Agent Started ===
+2026-04-07 16:56:13,356 - ============================================================
+2026-04-07 16:56:16,208 - 
+============================================================
+2026-04-07 16:56:16,208 - TEST #1
+2026-04-07 16:56:16,208 - ============================================================
+2026-04-07 16:56:16,209 - User Input: Tìm giúp tôi chuyến bay từ Hà Nội đi Đà Nẵng
+2026-04-07 16:56:16,209 - ⏳ Agent processing request...
+2026-04-07 16:56:17,537 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-04-07 16:56:17,539 - ✅ Agent response generated
+2026-04-07 16:56:17,540 - Agent Response:
+Chào bạn, để tìm chuyến bay phù hợp nhất, bạn cho mình biết thêm thông tin nhé:
+
+*   Bạn muốn đi vào ngày nào?
+*   Bạn dự định đi bao nhiêu ngày?
+*   Ngân sách cho chuyến đi của bạn khoảng bao nhiêu?
+2026-04-07 16:56:17,540 - ============================================================
+
+2026-04-07 16:57:41,664 - ✅ System prompt loaded
+2026-04-07 16:57:42,305 - ✅ LLM initialized (Gemini 2.5 Flash Lite)
+2026-04-07 16:57:42,305 - ✅ 3 tools registered: ['search_flights', 'search_hotels', 'calculate_budget']
+2026-04-07 16:57:42,315 - ✅ ReAct Agent created successfully
+2026-04-07 16:57:42,316 - ============================================================
+2026-04-07 16:57:42,316 - === TravelBuddy Agent Started ===
+2026-04-07 16:57:42,316 - ============================================================
+2026-04-07 16:57:50,559 - 
+============================================================
+2026-04-07 16:57:50,559 - TEST #1
+2026-04-07 16:57:50,560 - ============================================================
+2026-04-07 16:57:50,560 - User Input: Tìm giúp tôi chuyến bay từ Hà Nội đi Đà Nẵng
+2026-04-07 16:57:50,560 - ⏳ Agent processing request...
+2026-04-07 16:57:51,803 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-04-07 16:57:51,809 - ✅ Agent response generated
+2026-04-07 16:57:51,810 - Agent Response:
+Tuyệt vời! Để tôi tìm giúp bạn vé máy bay từ Hà Nội đi Đà Nẵng nhé. Bạn muốn đi ngày nào?
+2026-04-07 16:57:51,810 - ============================================================
+
+2026-04-07 16:58:37,247 - === Session Ended ===
+2026-04-07 16:59:14,545 - ✅ System prompt loaded
+2026-04-07 16:59:15,215 - ✅ LLM initialized (Gemini 2.5 Flash Lite)
+2026-04-07 16:59:15,215 - ✅ 3 tools registered: ['search_flights', 'search_hotels', 'calculate_budget']
+2026-04-07 16:59:15,223 - ✅ ReAct Agent created successfully
+2026-04-07 16:59:15,224 - ============================================================
+2026-04-07 16:59:15,224 - === TravelBuddy Agent Started ===
+2026-04-07 16:59:15,224 - ============================================================
+2026-04-07 16:59:25,338 - 
+============================================================
+2026-04-07 16:59:25,338 - TEST #1
+2026-04-07 16:59:25,339 - ============================================================
+2026-04-07 16:59:25,339 - User Input: Tìm giúp tôi chuyến bay từ Hà Nội đi Đà Nẵng
+2026-04-07 16:59:25,339 - ⏳ Agent processing request...
+2026-04-07 16:59:26,741 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-04-07 16:59:26,745 - 🔍 Searching flights from 'Hà Nội' to 'Đà Nẵng'
+2026-04-07 16:59:26,746 - ✈️ Found 4 flights
+2026-04-07 16:59:26,868 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 429 Too Many Requests"
+2026-04-07 16:59:26,873 - Retrying google.genai._api_client.BaseApiClient._request_once in 1.19 seconds as it raised ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash-lite\nPlease retry in 32.397815196s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash-lite'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '32s'}]}}.
+2026-04-07 16:59:28,191 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 429 Too Many Requests"
+2026-04-07 16:59:28,192 - Retrying google.genai._api_client.BaseApiClient._request_once in 2.32 seconds as it raised ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash-lite\nPlease retry in 31.090727234s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash-lite'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '31s'}]}}.
+2026-04-07 16:59:30,651 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 429 Too Many Requests"
+2026-04-07 16:59:30,652 - Retrying google.genai._api_client.BaseApiClient._request_once in 4.14 seconds as it raised ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash-lite\nPlease retry in 28.635552644s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash-lite', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '28s'}]}}.
+2026-04-07 16:59:34,949 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 429 Too Many Requests"
+2026-04-07 16:59:34,950 - Retrying google.genai._api_client.BaseApiClient._request_once in 8.62 seconds as it raised ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash-lite\nPlease retry in 24.350608184s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash-lite'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '24s'}]}}.
+2026-04-07 16:59:48,473 - ✅ System prompt loaded
+2026-04-07 16:59:49,063 - ✅ LLM initialized (Gemini 2.5 Flash Lite)
+2026-04-07 16:59:49,063 - ✅ 3 tools registered: ['search_flights', 'search_hotels', 'calculate_budget']
+2026-04-07 16:59:49,071 - ✅ ReAct Agent created successfully
+2026-04-07 16:59:49,071 - ============================================================
+2026-04-07 16:59:49,072 - === TravelBuddy Agent Started ===
+2026-04-07 16:59:49,072 - ============================================================
+2026-04-07 16:59:51,037 - 
+============================================================
+2026-04-07 16:59:51,037 - TEST #1
+2026-04-07 16:59:51,037 - ============================================================
+2026-04-07 16:59:51,037 - User Input: Tìm giúp tôi chuyến bay từ Hà Nội đi Đà Nẵng
+2026-04-07 16:59:51,038 - ⏳ Agent processing request...
+2026-04-07 16:59:51,302 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 429 Too Many Requests"
+2026-04-07 16:59:51,303 - Retrying google.genai._api_client.BaseApiClient._request_once in 1.27 seconds as it raised ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash-lite\nPlease retry in 7.977217177s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash-lite'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '7s'}]}}.
+2026-04-07 16:59:52,702 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 429 Too Many Requests"
+2026-04-07 16:59:52,703 - Retrying google.genai._api_client.BaseApiClient._request_once in 2.98 seconds as it raised ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash-lite\nPlease retry in 6.566046492s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash-lite', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '6s'}]}}.
+2026-04-07 16:59:55,826 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 429 Too Many Requests"
+2026-04-07 16:59:55,827 - Retrying google.genai._api_client.BaseApiClient._request_once in 4.98 seconds as it raised ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash-lite\nPlease retry in 3.439330484s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash-lite', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '3s'}]}}.
+2026-04-07 17:00:20,330 - ✅ System prompt loaded
+2026-04-07 17:00:21,172 - ✅ LLM initialized (Gemini 3.1 Flash Lite)
+2026-04-07 17:00:21,173 - ✅ 3 tools registered: ['search_flights', 'search_hotels', 'calculate_budget']
+2026-04-07 17:00:21,181 - ✅ ReAct Agent created successfully
+2026-04-07 17:00:21,182 - ============================================================
+2026-04-07 17:00:21,182 - === TravelBuddy Agent Started ===
+2026-04-07 17:00:21,183 - ============================================================
+2026-04-07 17:00:25,107 - 
+============================================================
+2026-04-07 17:00:25,108 - TEST #1
+2026-04-07 17:00:25,108 - ============================================================
+2026-04-07 17:00:25,108 - User Input: Tìm giúp tôi chuyến bay từ Hà Nội đi Đà Nẵng
+2026-04-07 17:00:25,108 - ⏳ Agent processing request...
+2026-04-07 17:00:34,224 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent "HTTP/1.1 200 OK"
+2026-04-07 17:00:34,228 - 🔍 Searching flights from 'Hà Nội' to 'Đà Nẵng'
+2026-04-07 17:00:34,228 - ✈️ Found 4 flights
+2026-04-07 17:00:37,107 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent "HTTP/1.1 200 OK"
+2026-04-07 17:00:37,109 - ✅ Agent response generated
+2026-04-07 17:00:37,109 - Agent Response:
+[{'type': 'text', 'text': 'Chào bạn! Rất vui được hỗ trợ bạn lên kế hoạch cho chuyến đi Đà Nẵng sắp tới. Dưới đây là các lựa chọn chuyến bay từ Hà Nội đi Đà Nẵng hiện có:\n\n✈️ **CHUYẾN BAY:**\n*   **VietJet Air:** 08:30 - 09:50 | 890.000đ (Hạng Economy)\n*   **Bamboo Airways:** 11:00 - 12:20 | 1.200.000đ (Hạng Economy)\n*   **Vietnam Airlines:** 06:00 - 07:20 | 1.450.000đ (Hạng Economy)\n*   **Vietnam Airlines:** 14:00 - 15:20 | 2.800.000đ (Hạng Business)\n\nBạn đã chọn được chuyến bay nào ưng ý chưa? Nếu bạn cần tìm khách sạn tại Đà Nẵng, hãy cho mình biết **ngân sách dự kiến mỗi đêm** của bạn là bao nhiêu nhé, mình sẽ tìm những lựa chọn phù hợp nhất cho bạn!', 'extras': {'signature': 'EjQKMgG+Pvb7q9wQJXb6YYk4pXKRIuVWP1Kfbn6y//XHxngTDtWp3CiX7AT/EShARYaoanZN'}}]
+2026-04-07 17:00:37,110 - ============================================================
+
+2026-04-07 17:01:34,123 - 
+============================================================
+2026-04-07 17:01:34,123 - TEST #2
+2026-04-07 17:01:34,123 - ============================================================
+2026-04-07 17:01:34,123 - User Input: Xin chào
+2026-04-07 17:01:34,124 - ⏳ Agent processing request...
+2026-04-07 17:01:35,728 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent "HTTP/1.1 200 OK"
+2026-04-07 17:01:35,729 - ✅ Agent response generated
+2026-04-07 17:01:35,730 - Agent Response:
+[{'type': 'text', 'text': 'Chào bạn! Rất vui được gặp bạn. Mình là TravelBuddy, người bạn đồng hành cùng bạn lên kế hoạch cho những chuyến đi tuyệt vời tại Việt Nam đây! ✈️\n\nBạn đang ấp ủ dự định đi đâu chơi hay cần mình hỗ trợ tìm vé máy bay, khách sạn hay tính toán ngân sách cho chuyến đi sắp tới không? Cứ chia sẻ với mình nhé, mình sẵn sàng giúp bạn ngay! 😊', 'extras': {'signature': 'EjQKMgG+Pvb7tza7GTagBeVtAyFX1vRiWYmB3y+dc3KTrLRlVSuqqmnReLGHgRQp5R+Qk6Fd'}}]
+2026-04-07 17:01:35,730 - ============================================================
+
+2026-04-07 17:01:46,932 - === Session Ended ===
+2026-04-07 17:02:54,575 - ✅ System prompt loaded
+2026-04-07 17:02:55,427 - ✅ LLM initialized (Gemini 3.1 Flash Lite)
+2026-04-07 17:02:55,427 - ✅ 3 tools registered: ['search_flights', 'search_hotels', 'calculate_budget']
+2026-04-07 17:02:55,437 - ✅ ReAct Agent created successfully
+2026-04-07 17:02:55,438 - ============================================================
+2026-04-07 17:02:55,438 - === TravelBuddy Agent Started ===
+2026-04-07 17:02:55,438 - ============================================================
+2026-04-07 17:02:57,434 - 
+============================================================
+2026-04-07 17:02:57,435 - TEST #1
+2026-04-07 17:02:57,435 - ============================================================
+2026-04-07 17:02:57,435 - User Input: Xin chào
+2026-04-07 17:02:57,436 - ⏳ Agent processing request...
+2026-04-07 17:03:02,416 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent "HTTP/1.1 200 OK"
+2026-04-07 17:03:02,419 - ✅ Agent response generated
+2026-04-07 17:03:02,420 - Agent Response:
+Chào bạn! Rất vui được gặp bạn. Mình là TravelBuddy, người bạn đồng hành cùng bạn lên kế hoạch cho những chuyến đi tuyệt vời tại Việt Nam đây! ✈️
+
+Bạn đang ấp ủ dự định đi đâu chơi hay cần mình hỗ trợ tìm vé máy bay, khách sạn hay tính toán ngân sách cho chuyến đi sắp tới không? Cứ chia sẻ với mình nhé, mình sẵn sàng giúp bạn ngay! 😊
+2026-04-07 17:03:02,420 - ============================================================
+
+2026-04-07 17:03:10,197 - 
+============================================================
+2026-04-07 17:03:10,198 - TEST #2
+2026-04-07 17:03:10,198 - ============================================================
+2026-04-07 17:03:10,198 - User Input: Tìm giúp tôi chuyến bay từ Hà Nội đi Đà Nẵng
+2026-04-07 17:03:10,199 - ⏳ Agent processing request...
+2026-04-07 17:03:17,585 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent "HTTP/1.1 200 OK"
+2026-04-07 17:03:17,589 - 🔍 Searching flights from 'Hà Nội' to 'Đà Nẵng'
+2026-04-07 17:03:17,589 - ✈️ Found 4 flights
+2026-04-07 17:03:40,612 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent "HTTP/1.1 200 OK"
+2026-04-07 17:03:40,614 - ✅ Agent response generated
+2026-04-07 17:03:40,615 - Agent Response:
+Chào bạn! Rất vui được hỗ trợ bạn lên kế hoạch cho chuyến đi Đà Nẵng sắp tới. Dưới đây là các lựa chọn chuyến bay từ Hà Nội đi Đà Nẵng hiện có:
+
+✈️ **CHUYẾN BAY:**
+*   **VietJet Air:** 08:30 - 09:50 | 890.000đ (Hạng Economy)
+*   **Bamboo Airways:** 11:00 - 12:20 | 1.200.000đ (Hạng Economy)
+*   **Vietnam Airlines:** 06:00 - 07:20 | 1.450.000đ (Hạng Economy)
+*   **Vietnam Airlines:** 14:00 - 15:20 | 2.800.000đ (Hạng Business)
+
+Bạn đã chọn được chuyến bay nào ưng ý chưa? Nếu bạn cần tìm khách sạn tại Đà Nẵng, hãy cho mình biết **ngân sách dự kiến mỗi đêm** của bạn là bao nhiêu nhé, mình sẽ tìm những lựa chọn phù hợp nhất cho bạn!
+2026-04-07 17:03:40,615 - ============================================================
+
+2026-04-07 17:03:52,856 - 
+============================================================
+2026-04-07 17:03:52,857 - TEST #3
+2026-04-07 17:03:52,857 - ============================================================
+2026-04-07 17:03:52,857 - User Input: Tôi ở Hà Nội, muốn đi Phú Quốc 2 đêm, budget 5 triệu. Tư vấn giúp!
+2026-04-07 17:03:52,858 - ⏳ Agent processing request...
+2026-04-07 17:03:59,998 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent "HTTP/1.1 200 OK"
+2026-04-07 17:04:00,001 - 🔍 Searching flights from 'Hà Nội' to 'Phú Quốc'
+2026-04-07 17:04:00,001 - ✈️ Found 3 flights
+2026-04-07 17:04:02,741 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent "HTTP/1.1 200 OK"
+2026-04-07 17:04:02,745 - 🏨 Searching hotels in 'Phú Quốc' (max price: 1.000.000đ/night)
+2026-04-07 17:04:02,745 - 🔑 Found 2 hotels matching criteria
+2026-04-07 17:04:04,685 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent "HTTP/1.1 200 OK"
+2026-04-07 17:04:04,741 - 💰 Calculating budget - Total: 5.000.000đ
+2026-04-07 17:04:04,744 - 📈 Expense items parsed: 2 items
+2026-04-07 17:04:04,744 - Total expense: 2.700.000đ | Remaining: 2.300.000đ
+2026-04-07 17:04:04,744 - ✅ Budget OK - 2.300.000đ remaining
+2026-04-07 17:04:09,208 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent "HTTP/1.1 200 OK"
+2026-04-07 17:04:09,210 - ✅ Agent response generated
+2026-04-07 17:04:09,211 - Agent Response:
+Chào bạn! Rất vui được đồng hành cùng bạn lên kế hoạch cho chuyến đi Phú Quốc sắp tới. Với ngân sách 5 triệu đồng cho 2 đêm, mình đã tìm kiếm các lựa chọn tối ưu nhất để bạn có một chuyến đi thoải mái mà vẫn tiết kiệm đây:
+
+✈️ **CHUYẾN BAY:**
+Mình gợi ý bạn chọn chuyến của **VietJet Air** lúc **16:00 - 18:15** với giá **1.100.000đ**. Đây là mức giá tốt nhất hiện tại, giúp bạn tiết kiệm chi phí để dành cho các trải nghiệm khác tại đảo.
+
+🏨 **KHÁCH SẠN:**
+Với ngân sách 2 đêm, mình gợi ý **Lahana Resort** (3 sao) tại khu vực Dương Đông với giá **800.000đ/đêm** (tổng 1.600.000đ). Resort này có không gian xanh mát, rất phù hợp để nghỉ dưỡng. Nếu bạn muốn tiết kiệm hơn nữa để dành tiền ăn uống, **9Station Hostel** cũng là một lựa chọn rất thú vị và trẻ trung.
+
+💰 **TỔNG CHI PHÍ DỰ KIẾN:**
+*   **Vé máy bay:** 1.100.000đ
+*   **Khách sạn (2 đêm):** 1.600.000đ
+*   **Tổng chi phí cơ bản:** 2.700.000đ
+*   **Ngân sách còn lại:** **2.300.000đ** (Số tiền này rất thoải mái để bạn chi tiêu ăn uống, thuê xe máy khám phá đảo và tham quan các điểm du lịch trong 3 ngày 2 đêm).
+
+💡 **GỢI Ý THÊM:**
+*   Với 2.3 triệu còn lại, bạn có thể thuê xe máy (khoảng 150k/ngày) để tự do đi lại.
+*   Đừng quên ghé chợ đêm Dương Đông để thưởng thức hải sản tươi sống nhé!
+*   Bạn có muốn mình hỗ trợ đặt thêm dịch vụ nào khác hoặc cần tư vấn thêm về lịch trình tham quan không?
+2026-04-07 17:04:09,211 - ============================================================
+
+2026-04-07 17:04:36,877 - 
+============================================================
+2026-04-07 17:04:36,877 - TEST #4
+2026-04-07 17:04:36,877 - ============================================================
+2026-04-07 17:04:36,878 - User Input: Tôi muốn đặt khách sạn
+2026-04-07 17:04:36,878 - ⏳ Agent processing request...
+2026-04-07 17:04:39,352 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent "HTTP/1.1 200 OK"
+2026-04-07 17:04:39,354 - ✅ Agent response generated
+2026-04-07 17:04:39,354 - Agent Response:
+Chào bạn! Rất vui được đồng hành cùng bạn trong chuyến đi sắp tới. Để mình tìm được những khách sạn ưng ý nhất cho bạn, bạn cho mình biết một vài thông tin nhé:
+
+1. Bạn dự định đi **thành phố nào**?
+2. **Ngân sách** tối đa bạn muốn chi cho mỗi đêm là bao nhiêu?
+
+Chỉ cần có thông tin này, mình sẽ lọc ngay những lựa chọn tốt nhất cho bạn!
+2026-04-07 17:04:39,355 - ============================================================
+
+2026-04-07 17:04:56,662 - 
+============================================================
+2026-04-07 17:04:56,662 - TEST #5
+2026-04-07 17:04:56,663 - ============================================================
+2026-04-07 17:04:56,663 - User Input: Giải giúp tôi bài tập lập trình Python về linked list
+2026-04-07 17:04:56,663 - ⏳ Agent processing request...
+2026-04-07 17:04:58,852 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent "HTTP/1.1 200 OK"
+2026-04-07 17:04:58,853 - ✅ Agent response generated
+2026-04-07 17:04:58,854 - Agent Response:
+Xin lỗi, như tôi đã chia sẻ, tôi chỉ hỗ trợ về du lịch. Yêu cầu này ngoài khả năng của tôi. Bạn có thể tìm một chuyên gia khác cho vấn đề này.
+
+Nếu bạn đang lên kế hoạch cho một chuyến đi, tôi rất sẵn lòng giúp bạn tìm vé máy bay, khách sạn hoặc tính toán ngân sách cho chuyến đi đó! Bạn có dự định đi đâu không?
+2026-04-07 17:04:58,854 - ============================================================
+
+2026-04-07 17:05:32,203 - 
+============================================================
+2026-04-07 17:05:32,204 - TEST #6
+2026-04-07 17:05:32,204 - ============================================================
+2026-04-07 17:05:32,204 - User Input: Xin chào! Tôi đang muốn đi du lịch nhưng chưa biết đi đâu.
+2026-04-07 17:05:32,204 - ⏳ Agent processing request...
+2026-04-07 17:05:50,146 - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent "HTTP/1.1 200 OK"
+2026-04-07 17:05:50,148 - ✅ Agent response generated
+2026-04-07 17:05:50,148 - Agent Response:
+Chào bạn! Rất vui được làm quen với bạn. Mình là TravelBuddy, người bạn đồng hành lý tưởng để cùng bạn lên kế hoạch cho những chuyến đi tuyệt vời tại Việt Nam đây! ✈️
+
+Việt Nam mình có rất nhiều điểm đến thú vị, tùy vào sở thích của bạn mà mình có thể gợi ý nhé:
+
+*   **Nếu bạn thích biển xanh, cát trắng:** Đà Nẵng, Nha Trang, Phú Quốc hay Quy Nhơn là những lựa chọn tuyệt vời.
+*   **Nếu bạn muốn tận hưởng không khí se lạnh, núi rừng hùng vĩ:** Đà Lạt, Sapa hay Hà Giang sẽ khiến bạn mê mẩn.
+*   **Nếu bạn muốn khám phá văn hóa, lịch sử:** Huế, Hội An hay Hà Nội luôn là những điểm đến không bao giờ cũ.
+
+Bạn đang nghiêng về phong cách nào? Hoặc bạn có dự định đi từ đâu không? Hãy chia sẻ với mình, mình sẽ giúp bạn tìm chuyến bay và khách sạn phù hợp nhất với ngân sách của bạn ngay! 😊
+2026-04-07 17:05:50,149 - ============================================================
+
+2026-04-07 17:06:48,624 - === Session Ended ===
