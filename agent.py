@@ -1,5 +1,7 @@
+import logging
 from typing import Annotated
 from typing_extensions import TypedDict
+from datetime import datetime
 
 from dotenv import load_dotenv
 from langchain_core.messages import SystemMessage
@@ -11,6 +13,16 @@ from langgraph.prebuilt import ToolNode, tools_condition
 from tools import calculate_budget, search_flights, search_hotels
 
 load_dotenv()
+
+# Setup logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(message)s',
+    handlers=[
+        logging.FileHandler('conversation.log', encoding='utf-8'),
+        logging.StreamHandler()
+    ]
+)
 
 with open("system_prompt.txt", "r", encoding="utf-8") as f:
     SYSTEM_PROMPT = f.read()
@@ -32,9 +44,12 @@ def agent_node(state: AgentState):
 
     if getattr(response, "tool_calls", None):
         for tc in response.tool_calls:
-            print(f"Gọi tool: {tc['name']}({tc['args']})")
+            tool_log = f"Gọi tool: {tc['name']}({tc['args']})"
+            print(f"[TOOL] {tool_log}")
+            logging.info(f"[TOOL] {tool_log}")
     else:
-        print("Trả lời trực tiếp")
+        print("[INFO] Trả lời trực tiếp")
+        logging.info("[INFO] Trả lời trực tiếp")
 
     return {"messages": [response]}
 
@@ -51,17 +66,32 @@ builder.add_edge("tools", "agent")
 graph = builder.compile()
 
 if __name__ == "__main__":
-    print("=" * 60)
+    separator = "=" * 60
+    print(separator)
     print("TravelBuddy – Trợ lý Du lịch Thông minh")
     print("      Gõ 'quit' để thoát")
-    print("=" * 60)
+    print(separator)
+    
+    logging.info(separator)
+    logging.info("=== TravelBuddy Agent Started ===")
+    logging.info(separator)
 
+    test_count = 0
     while True:
         user_input = input("\nBạn: ").strip()
         if user_input.lower() in ["quit", "exit", "q"]:
+            logging.info("=== Session Ended ===")
             break
 
+        test_count += 1
+        logging.info(f"\n--- TEST {test_count} ---")
+        logging.info(f"User: {user_input}")
+        
         print("\nTravelBuddy đang suy nghĩ...")
         result = graph.invoke({"messages": [("human", user_input)]})
         final = result["messages"][-1]
-        print(f"\nTravelBuddy: {final.content}")
+        response_text = final.content
+        
+        print(f"\nTravelBuddy: {response_text}")
+        logging.info(f"Assistant: {response_text}\n")
+
